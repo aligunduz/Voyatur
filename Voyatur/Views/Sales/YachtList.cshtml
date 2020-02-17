@@ -1,0 +1,55 @@
+﻿@*@model IEnumerable<DataAccessLayer.entities.Ships>*@
+@{
+    var user = (DataAccessLayer.entities.Users)Session["User"];
+    var ag = (int)ViewBag.Tip;
+}
+@{
+    ViewBag.Title = "OrganisationList";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<div class="site-section bg-light">
+    <div class="container">
+        <div class="row justify-content-center mb-5">
+            <div class="col-md-7 text-center">
+                <span class="text-serif text-primary" style="font-size:50px">YATLAR</span>
+            </div>
+        </div>
+        <div style="margin-bottom:50px;">
+            <div class="" style="display:flex;">
+                @Html.Label("Tür", new { @style = "margin-right:20px;" })
+                @Html.DropDownList("Tip", (List<SelectListItem>)ViewBag.yattipi, htmlAttributes: new { @class = "form-control", id = "tip", style = "width:150px; margin-right:20px;" })
+                @Html.Label("Kapasite", new { @style = "margin-right:20px;" })
+                @Html.DropDownList("Kapasite", (List<SelectListItem>)ViewBag.kapasite, htmlAttributes: new { @class = "form-control", id = "kapasite", style = "width:150px" })
+                <button id="btn1">Filtrele</button>
+            </div>
+
+
+        </div>
+        <div class="row" id="yatlar">
+            @Html.Action("ListYachtPartial", new { tip = ag, kapasite = -1, pageNumber = 1 })
+        </div>
+
+        <div id="pagenumber">
+            @for (int i = 1; i <= 10; i++)
+            {
+                <button class="pageid" value="@i">@i</button>
+            }
+
+        </div>
+        </div>
+</div>
+<script>
+    
+    
+    $("#btn1").click(function () {
+        $('#yatlar').load("/Sales/ListYachtPartial?tip=" + $('#tip').val() + "&kapasite=" + $('#kapasite').val() + "&pageNumber=1");
+    });
+        
+    $(".pageid").on("click", function () {
+        $('#yatlar').load("/Sales/ListYachtPartial?tip=" + $('#tip').val() + "&kapasite=" + $('#kapasite').val() + "&pageNumber=" + $(this).val());
+    });
+    
+
+    
+</script>

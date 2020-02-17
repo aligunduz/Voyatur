@@ -1,0 +1,26 @@
+﻿@model DataAccessLayer.entities.Tours
+@{
+    ViewBag.Title = "TourDetail";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<div class="site-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="~/images/@Model.img.FirstOrDefault().FilePath" alt="Image" class="img-fluid">
+            </div>
+            <div class="col-md-6">
+                <span class="text-serif text-primary">@Model.Place</span>
+                <h3 class="heading-92913 text-black">@Model.Name</h3>
+                <p class="text-black" style="font-size:15px">Fiyat: @Model.Price </p>
+                <p>@Model.Description</p>
+
+                <p><a href="#" class="btn btn-primary py-3 px-4">Tura Kayıt Ol</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,101 @@
+﻿@model DataAccessLayer.entities.Tours
+
+@{
+    ViewBag.Title = "OrganisationIlan";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="site-section" style="background-image: url('../images/AddBackground.png');background-repeat:no-repeat;background-size:cover">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    @Html.Label("Organizasyon Adı", htmlAttributes: new { @class = "formfont" })
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control form-control-lg" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    @Html.Label("Konum", htmlAttributes: new { @class = "formfont" })
+                    @Html.EditorFor(model => model.Place, new { htmlAttributes = new { @class = "form-control form-control-lg" } })
+                    @Html.ValidationMessageFor(model => model.Place, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    @Html.Label("Fiyat", htmlAttributes: new { @class = "formfont" })
+                    @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control form-control-lg" } })
+                    @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    @Html.Label("Başlangıç Tarihi", htmlAttributes: new { @class = "formfont" })
+                    @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control form-control-lg", id = "startdate", autocomplete = "off" } })
+                    @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    @Html.Label("Bitiş Tarihi", htmlAttributes: new { @class = "formfont" })
+                    @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control form-control-lg", id = "enddate", autocomplete = "off" } })
+                    @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 form-group">
+                    @Html.Label("Detay", htmlAttributes: new { @class = "formfont" })
+                    <textarea name="Description" id="message" cols="30" rows="10" class="form-control" style="width:540px;"></textarea>
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-12">
+                    <input type="submit" value="Fotoğraf Ekle" class="btn btn-primary rounded-0 px-3 px-5" />
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+}
+
+
+
+
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<script>
+    $(function () {
+        $("#startdate").datepicker();
+    });
+    $(function () {
+        $("#enddate").datepicker();
+    });
+            //$(function () {
+            //    $("#startdate").datepicker({
+            //        dateFormat: 'yy/mm/dd', changeMonth: true,
+            //        changeYear: true, yearRange: '1950:2010'
+            //    });
+            //});
+</script>

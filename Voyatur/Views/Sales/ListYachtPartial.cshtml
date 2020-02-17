@@ -1,0 +1,37 @@
+﻿@using PagedList
+@model PagedList<DataAccessLayer.entities.Ships>
+@{
+    var user = (DataAccessLayer.entities.Users)Session["User"];
+}
+
+<script src="~/css/jquery-3.3.1.min.js"></script>
+@foreach (var item in Model)
+{
+
+    <div class="col-md-6 col-lg-4 mb-4">
+        <div class="service-39381">
+            <img src="~/images/@item.img.FirstOrDefault().FilePath" alt="Image" class="img-fluid" style="width:350px;height:233px;">
+            <div class="p-4">
+                <h3 style=" margin-bottom:5px;"><a href="#" style="margin-right:80px"><span class="flaticon-yacht mr-1 text-primary"></span> @item.Name</a>  </h3>
+                <i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i>
+                @if (user != null && user.UserType)
+                {
+                    @Html.ActionLink("Güncelle", "YachtEdit", new { id = item.Id }, new { @class = "btn btn-primary" })
+                }
+                <div class="d-flex">
+                    <div class="mr-auto">
+                        @Html.ActionLink("DETAY", "YachtDetail", new { id = item.Id }, new { @class = "btn btn-primary" })
+                        <button type="button" class="btn btn-primary">Favorilere Ekle</button>
+                        @if (user != null && user.UserType)
+                        {
+                            @Html.ActionLink("SİL", "YachtSil", new { id = item.Id }, new { @class = "btn btn-primary" })
+                        }
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+}

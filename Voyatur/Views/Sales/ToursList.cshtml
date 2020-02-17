@@ -1,0 +1,49 @@
+﻿@model IEnumerable<DataAccessLayer.entities.Tours>
+@{
+    var user = (DataAccessLayer.entities.Users)Session["User"];
+}
+@{
+    ViewBag.Title = "OrganisationList";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<div class="site-section bg-light">
+    <div class="container">
+        <div class="row justify-content-center mb-5">
+            <div class="col-md-7 text-center">
+                <span class="text-serif text-primary" style="font-size:50px">TURLAR</span>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var item in Model)
+            {
+
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="service-39381">
+                        <img src="~/images/@item.img.FirstOrDefault().FilePath" alt="Image" class="img-fluid" style="width:350px;height:233px;">
+                        <div class="p-4">
+                            <h3 style=""><a href="#" style="margin-right:80px"><span class="flaticon-yacht mr-1 text-primary"></span> @item.Name</a> </h3>
+                            <i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i>
+                            <div class="d-flex">
+                                <div class="mr-auto">
+                                    @Html.ActionLink("DETAY", "TourDetail", new { id = item.Id }, new { @class = "btn btn-primary" })
+                                    <button type="button" class="btn btn-primary">Favorilere Ekle</button>
+                                    @if (user != null && user.UserType)
+                                    {
+                                        @Html.ActionLink("SİL", "TourSil", new { id = item.Id }, new { @class = "btn btn-primary" })
+                                    }
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            }
+        </div>
+
+
+
+    </div>
+</div>

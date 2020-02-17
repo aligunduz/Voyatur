@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "FotoEkle";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+
+@using (Ajax.BeginForm("UploadProductImage", "User", new AjaxOptions() { HttpMethod = "POST", OnSuccess = "OnSuccess" }, new { enctype = "multipart/form-data" }
+    ))
+    {
+<div class="form-group">
+    <input type="file" name="productImage" />
+</div>
+<div class="form-group">
+    <input type="hidden" name="productId" value="@ViewBag.productid" />
+</div>
+
+<div class="form-group">
+    <input type="checkbox" name="isMainStr" />
+</div>
+<input type="hidden" name="tip" value="@ViewBag.Tip" />
+<div class="form-group">
+    <input type="submit" value="Add" />
+</div>
+    }
+
+<script>
+    function OnSuccess(data) {
+        if(data==1)
+        
+    }
+</script>

@@ -1,0 +1,183 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>WaterBoat &mdash; Website Template by Colorlib</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    @*<link href='~/packages/core/main.css' rel='stylesheet' />
+        <link href='~/packages/daygrid/main.css' rel='stylesheet' />
+        <link href='~/packages/timegrid/main.css' rel='stylesheet' />
+        <link href='~/packages/list/main.css' rel='stylesheet' />
+        <script src='~/packages/core/main.js'></script>
+        <script src='~/packages/interaction/main.js'></script>
+        <script src='~/packages/daygrid/main.js'></script>
+        <script src='~/packages/timegrid/main.js'></script>
+        <script src='~/packages/list/main.js'></script>*@
+
+
+    @*<link href="https://fonts.googleapis.com/css?family=Oswald:400,700|Dancing+Script:400,700|Muli:300,400" rel="stylesheet">*@
+    <link href="~/css/css.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/fonts/icomoon/style.css">
+
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/jquery-ui.css">
+    <link rel="stylesheet" href="~/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="~/css/owl.theme.default.min.css">
+
+    <link rel="stylesheet" href="~/css/jquery.fancybox.min.css">
+
+    <link rel="stylesheet" href="~/css/bootstrap-datepicker.css">
+
+    <link rel="stylesheet" href="~/fonts/flaticon/font/flaticon.css">
+
+    <link rel="stylesheet" href="~/css/aos.css">
+    <link href="~/css/jquery.mb.YTPlayer.min.css" media="all" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="~/css/style.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <link href="~/css/main.css" rel="stylesheet" />
+    <script src="~/css/jquery-3.3.1.min.js"></script>
+    
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+    @{
+        DataAccessLayer.entities.Users ag = (DataAccessLayer.entities.Users)Session["User"];
+    }
+    <div class="site-wrap">
+
+        <div class="site-mobile-menu site-navbar-target">
+            <div class="site-mobile-menu-header">
+                <div class="site-mobile-menu-close mt-3">
+                    <span class="icon-close2 js-menu-toggle"></span>
+                </div>
+            </div>
+            <div class="site-mobile-menu-body"></div>
+        </div>
+
+
+
+        <div class="header-top bg-light">
+
+            <div class="site-navbar py-2 js-sticky-header site-navbar-target d-none pl-0 d-lg-block" role="banner" style="background-color:#c7d8d8">
+
+                <div class="container">
+                    <div class="d-flex align-items-center">
+
+                        <div class="mx-auto">
+                            <nav class="site-navigation position-relative text-right" role="navigation">
+
+                                <ul class="site-menu main-menu js-clone-nav mr-auto d-none pl-0 d-lg-block" id="liste">
+                                    <a href="https://localhost:44373" style="text-align:left; ">
+                                        <img src="~/images/logo.png" alt="Image" class="img-fluid logo">
+                                        <!-- <strong>Water</strong>Boat -->
+                                    </a>
+                                    <li class="active">
+                                        @Html.ActionLink("Anasayfa", "Index", "Home", new { }, new { @class = "nav-link text-left" })
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("YAT KİRALA", "YachtList", "Sales", new { }, new { @class = "nav-link text-left" })
+                                    </li>
+                                    <li>
+                                        <a href="services.html" class="nav-link text-left">Hakkımızda</a>
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("TURLAR", "ToursList", "Sales", new { }, new { @class = "nav-link text-left" })
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("Organizasyonlar", "OrganisationList", "Sales", new { }, new { @class = "nav-link text-left" })
+                                    </li>
+                                    <li>
+                                        <a href="contact.html" class="nav-link text-left">İletİşİm</a>
+                                    </li>
+                                    @if (ag == null)
+                                    {
+                                        <li style="width:60px; padding-right:0px">
+                                            @Html.ActionLink("GİRİŞ", "Login", "User", new { }, new { @class = "nav-link text-left" })
+                                            @*<a href="contact.html" class="nav-link text-left">GİRİŞ</a>*@
+                                        </li>
+                                        <li style="width:60px; padding-left:0px; text-align:left">
+                                            @Html.ActionLink("KAYIT", "Add", "User", new { }, new { @class = "nav-link text-left" })
+                                            @*<a href="contact.html" class="nav-link text-left">KAYIT</a>*@
+                                        </li>
+                                    }
+                                    else
+                                    {
+
+                                        <li style="width:60px; padding-right:0px">
+                                            @Html.ActionLink("ÇIKIŞ", "LogOut", "User", new { }, new { @class = "nav-link text-left" })
+                                        </li>
+                                        <li style="width:60px; padding-right:0px">
+                                            <a href="contact.html" class="nav-link text-left ">@ag.UserName</a>
+                                        </li>
+
+                                    }
+                                    @if (ag != null && ag.UserType)
+                                    {
+                                        <li style="width:60px; padding-right:0px">
+                                            @Html.ActionLink("ADMİN", "Admin", "User", new { }, new { @class = "nav-link text-left" })
+                                        </li>
+                                    }
+
+
+                                </ul>
+                            </nav>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        @RenderBody()
+
+        <div class="footer bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <p class="mb-4"><img src="~/images/logo.png" alt="Image" class="img-fluid"></p>
+                        <p>
+                            © 2018 | Voyatur A.Ş <br />
+                            Tüm Hakları Saklıdır
+                        </p>
+                    </div>
+                    <div class="col-lg-3">
+                        <h3 class="footer-heading"><span>Yat Kİrala</span></h3>
+                        <ul class="list-unstyled">
+                            <li><a href="https://localhost:44373/Sales/YachtList?tip=0">Gulet</a></li>
+                            <li><a href="https://localhost:44373/Sales/YachtList?tip=3">Yelkenli</a></li>
+                            <li><a href="https://localhost:44373/Sales/YachtList?tip=1">Motor Yat</a></li>
+                            <li><a href="https://localhost:44373/Sales/YachtList?tip=2">Katamaran</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3">
+                        <h3 class="footer-heading"><span>Bİze Danışın</span></h3>
+                        <ul class="list-unstyled">
+                            <li><span class="icon-phone"> +90 (252) 645 2088</span></li>
+                            <li><span class="icon-phone"> +90 (252) 645 3088</span></li>
+                            <li><span class="icon-fax"> +90 (252) 645 2090 (FAX)</span></li>
+                            <li><span class="icon-mail-forward"> info@voyatur.com</span></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3">
+                        <h3 class="footer-heading"><span>REZERVASYON</span></h3>
+                        <p style="font-size:20px">
+                            +90 0541 869 28 87 (VOYATUR)
+                        </p>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

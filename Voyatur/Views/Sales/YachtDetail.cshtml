@@ -1,0 +1,42 @@
+﻿@model DataAccessLayer.entities.Ships
+@{
+    var user = (DataAccessLayer.entities.Users)Session["User"];
+}
+@{
+    ViewBag.Title = "YachtDetail";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<div class="site-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="~/images/@Model.img.FirstOrDefault().FilePath" alt="Image" class="img-fluid">
+            </div>
+            <div class="col-md-6">
+                <span class="text-serif text-primary">@Model.Place</span>
+                <h3 class="heading-92913 text-black">@Model.Name</h3>
+                <p class="text-black" style="font-size:15px"><b>Fiyat</b>: @Model.Price </p>
+                <p class="text-black" style="font-size:15px"><b>Kapasite</b>: @Model.Kapasite </p>
+                <p class="text-black" style="font-size:15px"><b>Türü</b>: @Model.gemitipi </p>
+                <p>@Model.Description</p>
+                @if (user != null)
+                {
+                    @Html.ActionLink("YAT KİRALA", "YachtRent", new { id = Model.Id }, new { @class = "btn btn-primary py-3 px-4" })
+                }
+                else
+                {
+                    @Html.ActionLink("YAT KİRALA", "Login", "User", new { id = Model.Id }, new { @class = "btn btn-primary py-3 px-4" })
+                }
+
+            </div>
+        </div>
+        <div class="row">
+        </div>
+    </div>
+
+</div>
+
+<script>
+    
+</script>
